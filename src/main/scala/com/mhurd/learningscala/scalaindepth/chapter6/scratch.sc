@@ -1,9 +1,7 @@
 import com.mhurd.learningscala.scalaindepth.chapter6._
 
 class Changer extends DefaultHandles {
-
   var variable: Int = 1
-
   def setVariable(newValue: Int) {
     variable = newValue
     notifyListeners()
@@ -23,9 +21,7 @@ handle(foo)
 foo.unObserve(handle)
 
 foo.setVariable(5)
-
 class MyClosable {
-
   def close() {
     println("closed...")
   }
