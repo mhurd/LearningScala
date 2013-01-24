@@ -1,4 +1,5 @@
 import com.mhurd.learningscala.scalaindepth.chapter6._
+import com.mhurd.learningscala.scalaindepth.{Resources, DefaultHandles}
 
 class Changer extends DefaultHandles {
   var variable: Int = 1

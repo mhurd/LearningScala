@@ -1,8 +1,9 @@
 package com.mhurd.learningscala.futures
 
 import concurrent._
-import scala.util.{Failure, Success, Random}
+import scala.util.Random
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
 object Sequences {
 

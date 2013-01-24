@@ -1,4 +1,6 @@
-package com.mhurd.learningscala.scalaindepth.chapter6
+package com.mhurd.learningscala.scalaindepth
+
+import scala.language.reflectiveCalls
 
 object Resources {
 

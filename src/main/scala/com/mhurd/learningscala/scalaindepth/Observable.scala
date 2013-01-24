@@ -1,4 +1,4 @@
-package com.mhurd.learningscala.scalaindepth.chapter6
+package com.mhurd.learningscala.scalaindepth
 
 trait Observable {
 
