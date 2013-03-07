@@ -10,6 +10,8 @@ import java.io.PrintWriter
 val inputFile = "c:\\results.txt"
 val outputFile = "c:\\results-processed.txt"
 
+val filterRegex = """^.*(\.java).*$"""
+
 val source = io.Source.fromFile(inputFile)
 
 val matchRevision = """([0-9]*)$""".r
@@ -43,12 +45,24 @@ val prunedPairs = for {
   aMap._2.sortBy(_._2).reverse.head
 }
 
+val filteredPairs = prunedPairs.filter(p => filterRegex.r.findFirstIn(p._1).isDefined)
+
 val p = new PrintWriter(outputFile)
 for {
-  pair <- prunedPairs.toList.sortBy(_._2).reverse
+  pair <- filteredPairs.toList.sortBy(_._2).reverse
 } yield {
   p.write(pair._1 + " " + pair._2 + "\n")
 }
+
+
+
+
+
+
+
+
+
+
 
 p.close()
 
