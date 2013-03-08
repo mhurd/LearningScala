@@ -22,37 +22,45 @@ def getFileName(in: String): String = {
     case _ => "?"
   }
 }
-def getRevision(in: String): Int = {
 
+def getRevision(in: String): Int = {
   val group = matchRevision.findFirstIn(in)
   group match {
     case Some(rev) => rev.toInt
     case _ => 0
   }
 }
+
 def splitFile(in: String): (String, Int) = {
   (getFileName(in), getRevision(in))
 }
-val pairs = for {
-    line <- source.getLines().toList
-  } yield {
-    splitFile(line)
-  }
+
+val pairs = source.getLines().toList map splitFile
 
 val prunedPairs = for {
   aMap <- pairs.groupBy(_._1)
+  if filterRegex.r.findFirstIn(aMap._1).isDefined
 } yield {
   aMap._2.sortBy(_._2).reverse.head
 }
 
-val filteredPairs = prunedPairs.filter(p => filterRegex.r.findFirstIn(p._1).isDefined)
-
 val p = new PrintWriter(outputFile)
+
 for {
-  pair <- filteredPairs.toList.sortBy(_._2).reverse
+  pair <- prunedPairs.toList.sortBy(_._2).reverse
 } yield {
   p.write(pair._1 + " " + pair._2 + "\n")
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
